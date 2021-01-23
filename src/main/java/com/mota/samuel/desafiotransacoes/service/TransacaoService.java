@@ -87,6 +87,11 @@ public class TransacaoService {
         transacaos.clear();
     }
 
+    public List<Transacao> find() {
+        createTransacaoList();
+        return transacaos;
+    }
+
 
 
 
