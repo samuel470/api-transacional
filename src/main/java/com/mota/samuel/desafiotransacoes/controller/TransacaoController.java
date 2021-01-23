@@ -51,5 +51,15 @@ public class TransacaoController {
 
         }
     }
+
+    @DeleteMapping
+    public ResponseEntity<?> delete() {
+        try {
+            transacaoService.delete();
+            return ResponseEntity.ok("Todas as informações foram apagadas com sucesso");
+        }catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 }
 

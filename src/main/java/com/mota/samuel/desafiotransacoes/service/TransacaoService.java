@@ -83,6 +83,10 @@ public class TransacaoService {
         transacaos.add(transacao);
     }
 
+    public void delete() {
+        transacaos.clear();
+    }
+
 
 
 
