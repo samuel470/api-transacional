@@ -9,8 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,12 +21,6 @@ public class TransacaoTests {
     @Autowired
     private TransacaoService transacoesService;
 
-//    @BeforeAll
-//    public void setUp() {
-//
-//        List<Transacao> transacaos = new ArrayList<>();
-//
-//    }
 
 
     @Test
