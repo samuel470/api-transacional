@@ -24,10 +24,10 @@ public class EstatisticaService {
 
         estatistica
                 .setCount(
-                        (int) transacoes
+                         transacoes
                         .stream()
                         .filter(date -> date.getDataHora().isAfter(hConv))
-//                        .filter(date -> date.getDataHora().isBefore(hNow))
+                        .filter(date -> date.getDataHora().isBefore(hNow))
                         .count()
                 );
 
@@ -36,8 +36,8 @@ public class EstatisticaService {
                         BigDecimal.valueOf(
                                 transacoes
                                         .stream()
-//                                        .filter(date -> date.getDataHora().isAfter(hConv))
-//                                        .filter(date -> date.getDataHora().isBefore(hNow))
+                                        .filter(date -> date.getDataHora().isAfter(hConv))
+                                        .filter(date -> date.getDataHora().isBefore(hNow))
                                         .mapToDouble(t -> t.getValor().doubleValue())
                                         .sum())
                         .setScale(2, RoundingMode.HALF_UP));
@@ -47,8 +47,8 @@ public class EstatisticaService {
                         BigDecimal.valueOf(
                                 transacoes
                                         .stream()
-//                                        .filter(date -> date.getDataHora().isAfter(hConv))
-//                                        .filter(date -> date.getDataHora().isBefore(hNow))
+                                        .filter(date -> date.getDataHora().isAfter(hConv))
+                                        .filter(date -> date.getDataHora().isBefore(hNow))
                                         .mapToDouble(t -> t.getValor().doubleValue())
                                         .min().orElse(0.0))
                         .setScale(2, RoundingMode.HALF_UP));
@@ -58,8 +58,8 @@ public class EstatisticaService {
                         BigDecimal.valueOf(
                                 transacoes
                                         .stream()
-//                                        .filter(date -> date.getDataHora().isAfter(hConv))
-//                                        .filter(date -> date.getDataHora().isBefore(hNow))
+                                        .filter(date -> date.getDataHora().isAfter(hConv))
+                                        .filter(date -> date.getDataHora().isBefore(hNow))
                                         .mapToDouble(t -> t.getValor().doubleValue())
                                         .average().orElse(0.0))
                         .setScale(2, RoundingMode.HALF_UP));
@@ -70,8 +70,8 @@ public class EstatisticaService {
                         BigDecimal.valueOf(
                                 transacoes
                                         .stream()
-//                                        .filter(date -> date.getDataHora().isAfter(hConv))
-//                                        .filter(date -> date.getDataHora().isBefore(hNow))
+                                        .filter(date -> date.getDataHora().isAfter(hConv))
+                                        .filter(date -> date.getDataHora().isBefore(hNow))
                                         .mapToDouble(t -> t.getValor().doubleValue())
                                         .max().orElse(0.0))
                         .setScale(2, RoundingMode.HALF_UP));

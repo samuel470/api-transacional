@@ -24,13 +24,19 @@ public class TransacaoController {
     @ResponseBody
     public ResponseEntity<Transacao> create(@RequestBody JSONObject transacao) {
 
+
         try {
-            if (transacaoService.isJSONValid(transacao.toString())) {
+            if (transacaoService.isJSONValid(transacao.toString()) ) {
 
                 Transacao transacaoCreated = transacaoService.create(transacao);
                 var uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 
-                if (transacaoService.isDataHoraFuture(transacaoCreated)) {
+
+
+
+                if (transacaoService.isDataHoraFuture(transacaoCreated) || Integer.parseInt(transacao.get("valor").toString())<0) {
+
+
 
                     return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
 

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Data
 public class Estatistica {
 
-    private int count;
+    private long count;
     private BigDecimal sum;
     private BigDecimal avg;
     private BigDecimal max;
