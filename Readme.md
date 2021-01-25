@@ -54,6 +54,7 @@ Deve aceitar uma requisição com body vazio o seguinte código:
 ```
 <br/>
 Onde:<br/><br/>
+
 `count`: Quantidade de transações nos últimos 60 segundos.<br/>
 `sum`: Soma total do valor transacionado nos últimos 60 segundos.<br/>
 `avg`: Média do valor transacionado nos últimos 60 segundos.<br/>
