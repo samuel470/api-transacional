@@ -6,6 +6,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +21,10 @@ import java.time.LocalDateTime;
 @RestController
 @RequestMapping("/transacao")
 @Api("Transação API")
+
 public class TransacaoController {
+
+    private static Logger logger = LoggerFactory.getLogger(TransacaoController.class);
 
     @Autowired
     private TransacaoService transacaoService;
@@ -37,8 +42,7 @@ public class TransacaoController {
 
     public ResponseEntity<Transacao> create(@RequestBody JSONObject transacao) {
 
-        System.out.println(LocalDateTime.now());
-
+        logger.info("Criando nova transacao");
 
         try {
             if (transacaoService.isJSONValid(transacao.toString()) ) {
@@ -51,23 +55,25 @@ public class TransacaoController {
 
                 if (transacaoService.isDataHoraFuture(transacaoCreated) || Integer.parseInt(transacao.get("valor").toString())<0) {
 
-
+                    logger.info("Erro ao criar transação");
 
                     return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
 
                 } else {
 
+                    logger.info("Transação criada com sucesso!");
                     transacaoService.add(transacaoCreated);
                     return ResponseEntity.created(uri).body(null);
 
                 }
             } else {
 
+                logger.info("Erro ao criar transação - BadRequest");
                 return ResponseEntity.badRequest().body(null);
 
             }
         } catch (Exception e) {
-
+            logger.info("Erro ao criar transação - Unprocessable Entity");
             return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
 
         }
@@ -81,8 +87,11 @@ public class TransacaoController {
     public ResponseEntity<?> delete() {
         try {
             transacaoService.delete();
+            logger.info("Transações Excluidas!");
             return ResponseEntity.ok("");
+
         }catch(Exception e) {
+            logger.info("Erro ao excluir transações. - Internal Server Error");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }

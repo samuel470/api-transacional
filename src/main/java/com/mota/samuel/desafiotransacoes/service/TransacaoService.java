@@ -1,11 +1,10 @@
 package com.mota.samuel.desafiotransacoes.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mota.samuel.desafiotransacoes.controller.TransacaoController;
 import com.mota.samuel.desafiotransacoes.model.Transacao;
-
 import net.minidev.json.JSONObject;
 import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,10 +13,13 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class TransacaoService {
+
+    private static Logger logger = LoggerFactory.getLogger(TransacaoController.class);
 
     private List<Transacao> transacaos;
 
@@ -84,7 +86,15 @@ public class TransacaoService {
     }
 
     public void delete() {
-        transacaos.clear();
+        if (transacaos.isEmpty()){
+            logger.info("Não existe transações a serem excluidas");
+
+        }else {
+
+            transacaos.clear();
+
+        }
+
     }
 
     public List<Transacao> find() {

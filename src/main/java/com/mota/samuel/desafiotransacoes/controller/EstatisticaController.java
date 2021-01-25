@@ -7,6 +7,7 @@ import com.mota.samuel.desafiotransacoes.service.TransacaoService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/estatistica")
+@Slf4j
 public class EstatisticaController {
 
     LocalDateTime hNow = LocalDateTime.now();
@@ -35,6 +37,7 @@ public class EstatisticaController {
     })
     public ResponseEntity<Estatistica> getStatistics() throws Exception {
 
+        log.info("Gerando dados estatísticos");
         List<Transacao> transacoes = transacaoService.find();
         Estatistica estatistica = estatisticaService.create(transacoes);
 
