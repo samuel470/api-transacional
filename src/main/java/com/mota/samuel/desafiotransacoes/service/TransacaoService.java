@@ -64,7 +64,7 @@ public class TransacaoService {
     }
 
 
-    private void setTravelValues(JSONObject jsonTransacao, Transacao transacao) {
+    private void setTransacaoValues(JSONObject jsonTransacao, Transacao transacao) {
 
         transacao.setValor(jsonTransacao.get("valor") != null ? parseValor(jsonTransacao) : transacao.getValor());
         transacao.setDataHora(jsonTransacao.get("dataHora") != null ? parseDataHora(jsonTransacao) : transacao.getDataHora());
@@ -74,7 +74,7 @@ public class TransacaoService {
     public Transacao create(JSONObject jsonTransacao) {
 
         Transacao transacao = new Transacao();
-        setTravelValues(jsonTransacao,transacao);
+        setTransacaoValues(jsonTransacao,transacao);
 
         return transacao;
     }
@@ -92,6 +92,7 @@ public class TransacaoService {
         }else {
 
             transacaos.clear();
+            logger.info("Transações Excluidas!");
 
         }
 

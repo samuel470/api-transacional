@@ -87,7 +87,7 @@ public class TransacaoController {
     public ResponseEntity<?> delete() {
         try {
             transacaoService.delete();
-            logger.info("Transações Excluidas!");
+
             return ResponseEntity.ok("");
 
         }catch(Exception e) {
